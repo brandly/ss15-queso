@@ -1,16 +1,17 @@
 /** @jsx REACT.DOM */
 import React from 'react';
 import {classSet} from 'react-addons';
+import Track from '../models/track';
 
-var tracks = [{
+var tracks = [new Track({
   id: 0,
   title: 'fire',
   type: 'MIDI'
-}, {
+}), new Track({
   id: 1,
   title: 'beats',
   type: 'AUDIO'
-}];
+})];
 var selectedTrack = {};
 
 function getTracks () {
@@ -34,7 +35,7 @@ export default React.createClass({
   },
 
   addTrack: function () {
-    tracks.push({id: tracks.length, title: 'wahhh', type: 'MIDI'});
+    tracks.push(new Track({title: 'wahhh', type: 'MIDI'}));
     this._onChange();
   },
 
