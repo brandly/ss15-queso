@@ -3,52 +3,41 @@ import React from 'react';
 import {classSet} from 'react-addons';
 import Track from '../models/track';
 
-var tracks = [new Track({
-  id: 0,
-  title: 'fire',
-  type: 'MIDI'
-}), new Track({
-  id: 1,
-  title: 'beats',
-  type: 'AUDIO'
-})];
-var selectedTrack = {};
-
-function getTracks () {
-  return {
-    tracks: tracks,
-    selectedTrack: selectedTrack
-  };
-}
-
 export default React.createClass({
   componentWillMount: function () {
+    this.props.queso.on('TRACK_SELECTED', this._onChange);
+    this.props.queso.on('TRACK_ADDED', this._onChange);
+  },
 
+  getTracks: function () {
+    var {tracks, selectedTrack} = this.props.queso
+    return {
+      tracks: tracks,
+      selectedTrack: selectedTrack
+    };
   },
 
   getInitialState: function () {
-    return getTracks();
+    return this.getTracks();
   },
 
   _onChange: function () {
-    this.setState(getTracks());
-  },
-
-  addTrack: function () {
-    tracks.push(new Track({title: 'wahhh', type: 'MIDI'}));
-    this._onChange();
+    this.setState(this.getTracks());
   },
 
   selectTrack: function (track) {
-    selectedTrack = track;
-    this._onChange();
+    this.props.queso.selectTrack(track);
+  },
+
+  addTrack: function () {
+    this.props.queso.addTrack(new Track({title: 'wahhh'}));
   },
 
   render: function () {
     var trackElements = this.state.tracks.map((t, i) => {
       var classes = classSet({
         'track': true,
-        'track-selected': t.id === this.state.selectedTrack.id
+        'track-selected': this.state.selectedTrack && (t.id === this.state.selectedTrack.id)
       });
 
       return (
