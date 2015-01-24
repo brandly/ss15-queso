@@ -52,6 +52,13 @@ gulp.task('styles', function () {
     .pipe(gulp.dest(paths.dest));
 });
 
-gulp.task('default', function () {
+gulp.task('html', function () {
+  return gulp.src('src/index.html')
+    .pipe(gulp.dest(paths.dest));
+});
+
+gulp.task('default', ['html', 'styles'], function () {
   compileScripts(true);
+  gulp.watch('src/**/*.less', ['styles']);
+  gulp.watch('src/index.html', ['html']);
 });
