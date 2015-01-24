@@ -24,5 +24,9 @@
     "reactify": "^1.0.0",
     "vinyl-source-stream": "^1.0.0",
     "watchify": "^2.2.1"
+  },
+  "dependencies": {
+    "keymaster": "^1.6.2",
+    "react": "^0.12.2"
   }
 }
