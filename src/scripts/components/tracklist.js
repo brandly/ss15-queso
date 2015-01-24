@@ -39,20 +39,16 @@ export default React.createClass({
   },
 
   selectTrack: function (track) {
-    console.log('ayo', track);
     selectedTrack = track;
     this._onChange();
   },
 
   render: function () {
-    console.log('render');
     var trackElements = this.state.tracks.map((t, i) => {
       var classes = classSet({
         'track': true,
         'track-selected': t.id === this.state.selectedTrack.id
       });
-
-      console.log(t.id, this.state.selectedTrack.id, t.id === this.state.selectedTrack.id);
 
       return (
         <div className={classes} key={i} onClick={this.selectTrack.bind(this, t)}>
