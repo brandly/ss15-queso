@@ -13,6 +13,11 @@ var paths = {
   dest: 'dist/'
 };
 
+function handleError (err) {
+  console.error(err)
+  gutil.beep();
+}
+
 function compileScripts(watch) {
   gutil.log('Starting browserify');
 
@@ -31,7 +36,7 @@ function compileScripts(watch) {
 
   var rebundle = function () {
     return bundler.bundle()
-      .on('error', function (err) { console.error(err) })
+      .on('error', handleError)
       .pipe(source(entryFile))
       .pipe(rename('app.js'))
       .pipe(gulp.dest(paths.dest));
