@@ -18,6 +18,8 @@ export default React.createClass({
       title: 'beats',
       type: 'AUDIO'
     });
+
+    this.queso.on('TRACK_SELECTED', this._onChange);
   },
 
   getQueso: function () {
@@ -36,7 +38,7 @@ export default React.createClass({
     return (
       <div className="queso">
         <TrackList queso={this.state.queso} />
-        <ControlPanel />
+        <ControlPanel track={this.state.queso.selectedTrack} />
       </div>
     );
   }
