@@ -16,6 +16,7 @@ var paths = {
 function handleError (err) {
   console.error(err)
   gutil.beep();
+  this.emit('end');
 }
 
 function compileScripts(watch) {
@@ -53,6 +54,7 @@ gulp.task('scripts', function () {
 gulp.task('styles', function () {
   return gulp.src('src/style.less')
     .pipe(less())
+    .on('error', handleError)
     .pipe(autoprefixer())
     .pipe(gulp.dest(paths.dest));
 });
