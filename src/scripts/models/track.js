@@ -1,5 +1,6 @@
+import EventEmitter from 'events';
 
-export default class Track {
+export default class Track extends EventEmitter {
   constructor(opts) {
     this.id = opts.id || Date.now();
     this.title = opts.title || '';
