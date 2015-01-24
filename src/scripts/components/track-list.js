@@ -61,7 +61,7 @@ export default React.createClass({
 
     return (
       <div className="track-list">
-        <button onClick={this.addTrack}>Add Track</button>
+        <button className="button" onClick={this.addTrack}>Add Track</button>
         {trackElements}
       </div>
     );
