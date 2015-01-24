@@ -1,14 +1,15 @@
 /** @jsx REACT.DOM */
 import React from 'react';
-import TrackList from './tracklist.js'
+import TrackList from './track-list.js'
+import ControlPanel from './control-panel'
 
 export default React.createClass({
   render: function () {
     return (
-      <div>
-        <h1>Queso</h1>
+      <div className="queso">
         <TrackList />
+        <ControlPanel />
       </div>
-    )
+    );
   }
 });
