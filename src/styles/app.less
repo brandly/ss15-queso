@@ -10,19 +10,16 @@ body {
 .track {
   height: 80px;
   width: 100%;
-
+  border-top: 1px solid @gray;
 }
 
 .track-selected {
-  .track-sounds {
-    background-color: @orange;
-  }
+  background-color: @silver;
 }
 
 @track-info-width: 160px;
 
 .track-sounds {
-  background-color: @red;
   width: calc(100% ~"-" @track-info-width);
   height: 100%;
   clear: both;
@@ -35,4 +32,5 @@ body {
   height: 100%;
   padding: 10px;
   float: right;
+  border-left: 1px solid @gray;
 }
