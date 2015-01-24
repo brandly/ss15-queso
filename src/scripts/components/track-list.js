@@ -1,7 +1,6 @@
 /** @jsx REACT.DOM */
 import React from 'react';
 import {classSet} from 'react-addons';
-import Track from '../models/track';
 
 export default React.createClass({
   componentWillMount: function () {
@@ -29,10 +28,6 @@ export default React.createClass({
     this.props.queso.selectTrack(track);
   },
 
-  addTrack: function () {
-    this.props.queso.addTrack(new Track({title: 'wahhh'}));
-  },
-
   render: function () {
     var trackElements = this.state.tracks.map((t, i) => {
       var classes = classSet({
@@ -50,7 +45,6 @@ export default React.createClass({
 
     return (
       <div className="track-list">
-        <button className="button" onClick={this.addTrack}>Add Track</button>
         {trackElements}
       </div>
     );

@@ -1,23 +1,25 @@
 /** @jsx REACT.DOM */
 import React from 'react';
-import TrackList from './track-list.js';
+import Header from './header';
+import TrackList from './track-list';
 import ControlPanel from './control-panel';
 import Queso from '../models/queso';
+import Track from '../models/track';
 
 export default React.createClass({
   queso: new Queso(),
 
   componentWillMount: function () {
-    this.queso.addTrack({
+    this.queso.addTrack(new Track({
       id: 0,
       title: 'fire',
       type: 'MIDI'
-    });
-    this.queso.addTrack({
+    }));
+    this.queso.addTrack(new Track({
       id: 1,
       title: 'beats',
       type: 'AUDIO'
-    });
+    }));
 
     this.queso.on('TRACK_SELECTED', this._onChange);
   },
@@ -37,6 +39,7 @@ export default React.createClass({
   render: function () {
     return (
       <div className="queso">
+        <Header queso={this.state.queso} />
         <TrackList queso={this.state.queso} />
         <ControlPanel track={this.state.queso.selectedTrack} />
       </div>
