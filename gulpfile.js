@@ -52,13 +52,13 @@ gulp.task('styles', function () {
     .pipe(gulp.dest(paths.dest));
 });
 
-gulp.task('html', function () {
-  return gulp.src('src/index.html')
+gulp.task('statics', function () {
+  return gulp.src('public/**/*')
     .pipe(gulp.dest(paths.dest));
 });
 
-gulp.task('default', ['html', 'styles'], function () {
+gulp.task('default', ['statics', 'styles'], function () {
   compileScripts(true);
   gulp.watch('src/**/*.less', ['styles']);
-  gulp.watch('src/index.html', ['html']);
+  gulp.watch('public/**/*', ['statics']);
 });
