@@ -6,6 +6,8 @@ var watchify = require('watchify');
 var reactify = require('reactify');
 var to5ify = require('6to5ify');
 var rename = require('gulp-rename');
+var less = require('gulp-less');
+var autoprefixer = require('gulp-autoprefixer');
 
 var paths = {
   dest: 'dist/'
@@ -41,6 +43,13 @@ function compileScripts(watch) {
 
 gulp.task('scripts', function () {
   compileScripts(false);
+});
+
+gulp.task('styles', function () {
+  return gulp.src('src/style.less')
+    .pipe(less())
+    .pipe(autoprefixer())
+    .pipe(gulp.dest(paths.dest));
 });
 
 gulp.task('default', function () {
