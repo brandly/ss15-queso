@@ -2,6 +2,7 @@
 import React from 'react';
 import {classSet} from 'react-addons';
 import Track from '../models/track';
+import CurrentTimeBar from './current-time-bar';
 import keymaster from 'keymaster';
 
 export default React.createClass({
@@ -56,6 +57,7 @@ export default React.createClass({
 
     return (
       <div className="track-list">
+        <CurrentTimeBar queso={this.props.queso} />
         {trackElements}
         <a href="#" className="add-track" onClick={this.addTrack}>
           <div className="add-track-inner">New Track</div>
