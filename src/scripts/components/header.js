@@ -28,6 +28,19 @@ export default React.createClass({
     queso.setRecording(!queso.isRecording);
   },
 
+  lastTap: null,
+  tapBpm: function () {
+    const tapTime = tsw.context().currentTime;
+    if (this.lastTap) {
+      const difference = tapTime - this.lastTap;
+
+      if (difference < 2) {
+        this.state.queso.setBpm(Math.round(60 / difference));
+      }
+    }
+    this.lastTap = tsw.context().currentTime;
+  },
+
   render: function () {
     const {queso} = this.state;
 
@@ -49,6 +62,11 @@ export default React.createClass({
         <button className={playingClasses} onClick={this.play}>Play</button>
         <button className="button" onClick={this.stop}>Stop</button>
         <button className={recordingClasses} onClick={this.record}>Record</button>
+
+        <div className="header-right">
+          <p className="bpm">{this.state.queso.bpm}</p>
+          <p className="bpm tap-bpm" onClick={this.tapBpm}>TAP</p>
+        </div>
       </header>
     );
   }
