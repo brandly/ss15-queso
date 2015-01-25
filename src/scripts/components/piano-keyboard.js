@@ -15,10 +15,10 @@ export default React.createClass({
     keyboardEl.id = cuid();
     this.hancock = new QwertyHancock({
       id: keyboardEl.id,
-      width: 600,
+      width: window.innerWidth * 0.9,
       height: 150,
-      octaves: 2,
-      startNote: 'A3',
+      octaves: Math.round(window.innerWidth / 400),
+      startNote: 'C3',
       whiteNotesColour: 'white',
       blackNotesColour: 'black',
       hoverColour: '#f3e939'
