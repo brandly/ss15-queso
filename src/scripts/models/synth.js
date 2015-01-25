@@ -5,7 +5,7 @@
 const validShapes = ['sine', 'square', 'triangle', 'sawtooth'];
 
 export default class Synth {
-  constructor(opts) {
+  constructor(opts = {}) {
     this.shape = opts.shape || 'sine';
   }
 
