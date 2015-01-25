@@ -7,20 +7,26 @@ export default React.createClass({
   },
 
   getInitialState: function () {
-    return {};
+    return {track: this.props.track};
   },
 
   _onChange: function () {
-    this.setState({});
+    this.setState({track: this.props.track});
+  },
+
+  setShape: function (shape) {
+    this.props.track.instrument.setShape(shape);
+    this._onChange();
   },
 
   render: function () {
     const shapes = this.props.track.instrument.getShapes();
     const elements = shapes.map((shape, i) => {
+      const id = 'shape-' + shape;
       return (
         <div className="shape" key={i}>
-          <label>{shape}</label>
-          <input type="radio" />
+          <input id={id} type="radio" checked={shape === this.props.track.instrument.shape} onChange={this.setShape.bind(this, shape)} />
+          <label htmlFor={id}>{shape}</label>
         </div>
       );
     });
