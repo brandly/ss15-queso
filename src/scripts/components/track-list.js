@@ -14,6 +14,10 @@ export default React.createClass({
     keymaster('shift+t', this.addTrack);
   },
 
+  listenForNoteAdded: function (track) {
+    track.on('NODE_ADDED', this._onChange);
+  },
+
   getTracks: function () {
     var {tracks, selectedTrack} = this.props.queso;
     return {tracks, selectedTrack};
@@ -37,16 +41,33 @@ export default React.createClass({
   },
 
   render: function () {
-    var trackElements = this.state.tracks.map((t, i) => {
-      var classes = classSet({
+    const trackElements = this.state.tracks.map((t, i) => {
+      const classes = classSet({
         'track': true,
         'is-recording': t.isRecording,
         'track-selected': this.state.selectedTrack && (t.id === this.state.selectedTrack.id)
       });
 
+      const sounds = t.recordings.map((r, i) => {
+        const style = {
+          position: 'absolute',
+          top: 0,
+          left: r.startTime * 100 + '%',
+          right: 100 - r.endTime * 100 + '%',
+          height: '10px',
+          backgroundColor: '#5B5268'
+        };
+
+        return (
+          <div style={style}></div>
+        );
+      });
+
       return (
         <div className={classes} key={i} onClick={this.selectTrack.bind(this, t)}>
-          <div className="track-sounds"></div>
+          <div className="track-sounds">
+            {sounds}
+          </div>
           <div className="track-info">
             <div className="track-info-title">{t.instrument.shape}</div>
           </div>

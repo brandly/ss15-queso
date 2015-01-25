@@ -33,6 +33,7 @@ export default class Track extends EventEmitter {
             startTime, endTime
           });
           this.emit('NOTE_ADDED');
+          this.queso.emit('TRACK_CHANGED');
         }
       }
     };
