@@ -59,7 +59,7 @@ export default React.createClass({
         };
 
         return (
-          <div style={style}></div>
+          <div style={style} key={i}></div>
         );
       });
 
