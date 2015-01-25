@@ -4,21 +4,21 @@ button {
 
 .button {
   outline: none;
-  border: 1px solid @blue;
+  border: 1px solid @detail-color;
   border-radius: 4px;
-  color: @blue;
-  background-color: white;
-  margin: 10px;
+  // color: @blue;
+  color: #FFF;
+  background-color: @main-background-color;
   padding: 8px;
   font-size: 1.0rem;
   line-height: 1.3;
 
   &:hover {
-    background-color: @blue;
+    background-color: @active-color;
     color: white;
   }
 
   &:hover:active {
-    box-shadow: inset 0 0 10px @navy;
+    box-shadow: inset 0 0 10px @main-background-color;
   }
 }

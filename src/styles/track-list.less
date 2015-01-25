@@ -6,14 +6,14 @@
 .track, .add-track {
   height: 80px;
   width: 100%;
-  border-bottom: 1px solid @gray;
+  border-bottom: 1px solid @detail-color;
   &.is-recording {
     background-color: lighten(@red, 35%);
   }
 }
 
 .track-selected {
-  background-color: @silver;
+  background-color: @active-color;
 }
 
 @track-info-width: 160px;
@@ -30,16 +30,21 @@
   height: 100%;
   padding: 10px;
   float: right;
-  border-left: 1px solid @gray;
+  border-left: 1px solid @detail-color;
 }
 
 .track-info-title {
-  color: @black;
-  font-weight: bold;
 }
 
 .add-track {
   display: table;
+  color: #FFF;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
   div {
     display: table-cell;
     vertical-align: middle;
