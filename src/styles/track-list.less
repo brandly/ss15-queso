@@ -3,10 +3,10 @@
   overflow-y: auto;
 }
 
-.track {
+.track, .add-track {
   height: 80px;
   width: 100%;
-  border-top: 1px solid @gray;
+  border-bottom: 1px solid @gray;
   &.is-recording {
     background-color: lighten(@red, 35%);
   }
@@ -36,4 +36,13 @@
 .track-info-title {
   color: @black;
   font-weight: bold;
+}
+
+.add-track {
+  display: table;
+  div {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+  }
 }
