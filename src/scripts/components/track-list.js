@@ -58,7 +58,7 @@ export default React.createClass({
       <div className="track-list">
         {trackElements}
         <a href="#" className="add-track" onClick={this.addTrack}>
-          <div className="add-track-inner">New track</div>
+          <div className="add-track-inner">New Track</div>
         </a>
       </div>
     );
