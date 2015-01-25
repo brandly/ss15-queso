@@ -14,9 +14,14 @@ export default class Track extends EventEmitter {
     this.panner = tsw.panner(opts.panner || 0);
   }
 
-  connect() {
-    if (this.instrument) {
-      tsw.connect(this.instrument.getNode(), this.panner, this.gain, tsw.speakers);
-    }
+  play(args) {
+    var {frequency, time} = args;
+    var node = this.instrument.getNode(frequency);
+    tsw.connect(node, this.panner, this.gain, tsw.speakers);
+    tsw.start();
+    // TODO: this is shit
+    window.setTimeout(function () {
+      tsw.stop();
+    }, time);
   }
 }
