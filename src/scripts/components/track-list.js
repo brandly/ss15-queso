@@ -57,8 +57,10 @@ export default React.createClass({
 
     return (
       <div className="track-list">
-        <CurrentTimeBar queso={this.props.queso} />
-        {trackElements}
+        <div className="the-tracks">
+          <CurrentTimeBar queso={this.props.queso} />
+          {trackElements}
+        </div>
         <a href="#" className="add-track" onClick={this.addTrack}>
           <div className="add-track-inner">New Track</div>
         </a>
