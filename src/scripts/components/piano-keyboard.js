@@ -27,7 +27,7 @@ export default React.createClass({
 
     let currentlyPlaying = {};
     this.hancock.keyDown = (note, frequency) => {
-      currentlyPlaying[note] = this.props.track.play(frequency);
+      currentlyPlaying[note] = this.props.track.play({ frequency });
     };
     this.hancock.keyUp = function(note) {
       currentlyPlaying[note].stop();
