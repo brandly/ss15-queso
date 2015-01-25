@@ -31,6 +31,7 @@ export default class Track extends EventEmitter {
           frequency: frequency,
           startTime, endTime
         });
+        this.emit('NOTE_ADDED');
       }
     };
   }
