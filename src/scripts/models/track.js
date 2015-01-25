@@ -15,13 +15,16 @@ export default class Track extends EventEmitter {
   }
 
   play(args) {
-    var {frequency, time} = args;
+    var {frequency} = args;
     var node = this.instrument.getNode(frequency);
     tsw.connect(node, this.panner, this.gain, tsw.speakers);
-    tsw.start();
-    // TODO: this is shit
-    window.setTimeout(function () {
-      tsw.stop();
-    }, time);
+    node.start();
+
+    return {
+      stop: function () {
+        node.stop();
+        // clean up recording and stuff
+      }
+    }
   }
 }
