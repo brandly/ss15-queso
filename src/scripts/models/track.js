@@ -25,13 +25,15 @@ export default class Track extends EventEmitter {
 
     return {
       stop: () => {
-        const endTime = this.queso.currentTime;
         node.stop();
-        this.recordings.push({
-          frequency: frequency,
-          startTime, endTime
-        });
-        this.emit('NOTE_ADDED');
+        if (this.queso.isRecording) {
+          const endTime = this.queso.currentTime;
+          this.recordings.push({
+            frequency: frequency,
+            startTime, endTime
+          });
+          this.emit('NOTE_ADDED');
+        }
       }
     };
   }
