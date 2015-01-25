@@ -55,7 +55,7 @@ export default class Queso extends EventEmitter {
             note.playing.stop();
             delete note.playing;
           } else if (inInterval && !note.playing) {
-            note.playing = track.play(note.frequency);
+            note.playing = track.play({ frequency: note.frequency });
           }
         });
       });
