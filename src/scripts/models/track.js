@@ -29,6 +29,6 @@ export default class Track extends EventEmitter {
         node.stop();
         // clean up recording and stuff
       }
-    }
+    };
   }
 }
