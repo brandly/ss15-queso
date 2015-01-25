@@ -16,10 +16,6 @@ export default React.createClass({
       blackNotesColour: 'black',
       hoverColour: '#f3e939'
     });
-    setTimeout(() => {
-      console.log('widening');
-      this.hancock.width = 700;
-    }, 5000);
   },
   render: function () {
     return (
