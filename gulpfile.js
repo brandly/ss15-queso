@@ -20,22 +20,9 @@ function handleError (err) {
 }
 
 function compileScripts(watch) {
-  gutil.log('Starting browserify');
 
-  var entryFile = './src/app.js';
-  var browserifyOpts = {debug: true, entries: entryFile, cache: {}};
-
-  var bundler;
-  if (watch) {
-    bundler = watchify(browserify(browserifyOpts));
-  } else {
-    bundler = browserify(browserifyOpts);
-  }
-
-  bundler.transform(reactify);
-  bundler.transform(to5ify);
-
-  var rebundle = function () {
+  function rebundle() {
+    gutil.log('Bundling Browserify');
     return bundler.bundle()
       .on('error', handleError)
       .pipe(source(entryFile))
@@ -43,7 +30,16 @@ function compileScripts(watch) {
       .pipe(gulp.dest(paths.dest));
   }
 
-  bundler.on('update', rebundle);
+  var entryFile = './src/app.js';
+  var browserifyOpts = {debug: true, entries: entryFile, cache: {}};
+  var bundler = browserify(browserifyOpts);
+  bundler.transform(reactify);
+  bundler.transform(to5ify);
+  if (watch) {
+    bundler = watchify(bundler);
+    bundler.on('update', rebundle);
+  }
+
   return rebundle();
 }
 
