@@ -32,7 +32,7 @@ export default class Queso extends EventEmitter {
           bpm: this.bpm,
           ms: PLAY_INTERVAL
         });
-        this.setCurrentTime(this.currentTime + step) % 1;
+        this.setCurrentTime((this.currentTime + step) % 1);
       }, PLAY_INTERVAL);
     } else {
       // stop playing, stop recording too
@@ -44,7 +44,7 @@ export default class Queso extends EventEmitter {
   }
 
   setCurrentTime(time) {
-    this.currentTime = time;
+    this.currentTime = time % 1;
     this.emit('CURRENT_TIME_CHANGED');
   }
 
