@@ -19,9 +19,8 @@ export default React.createClass({
 
   render: function () {
     const styles = {
-      left: `${this.state.currentTime * 100}%`
+      left: `calc((100% - 160px) * ${this.state.currentTime})`
     };
-    console.log(styles.left);
     return (
       <div className="current-time-bar" style={styles}></div>
     );
