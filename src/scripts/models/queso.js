@@ -8,6 +8,7 @@ export default class Queso extends EventEmitter {
 
   addTrack(track) {
     this.tracks.push(track);
+    track.connect();
     this.emit('TRACK_ADDED', track);
   }
 
