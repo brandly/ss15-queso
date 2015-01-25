@@ -10,10 +10,7 @@ export default React.createClass({
 
   getTracks: function () {
     var {tracks, selectedTrack} = this.props.queso;
-    return {
-      tracks: tracks,
-      selectedTrack: selectedTrack
-    };
+    return {tracks, selectedTrack};
   },
 
   getInitialState: function () {
