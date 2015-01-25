@@ -16,6 +16,9 @@ export default class Queso extends EventEmitter {
   }
 
   selectTrack(track) {
+    if (this.selectedTrack) {
+      this.selectedTrack.isRecording = false;
+    }
     this.selectedTrack = track;
     this.emit('TRACK_SELECTED', this.selectedTrack);
   }
@@ -35,6 +38,9 @@ export default class Queso extends EventEmitter {
       this.isPlaying = true;
     }
     this.isRecording = recording;
+    if (this.selectedTrack) {
+      this.selectedTrack.isRecording = this.isRecording;
+    }
     this.emit('STATE_CHANGED');
   }
 

@@ -24,11 +24,24 @@ export default class Track extends EventEmitter {
     var node = this.instrument.getNode(frequency);
     tsw.connect(node, this.panner, this.gain, tsw.speakers);
     node.start();
+
+    if (this.isRecording) {
+      this.record(args);
+    }
+
     return {
       stop: function () {
         node.stop();
         // clean up recording and stuff
       }
     };
+  }
+
+  record(args) {
+    this.recordings.push({
+      frequest: args.frequency,
+      time: args.time // this should come from some playback head
+    });
+    // emit something?
   }
 }
