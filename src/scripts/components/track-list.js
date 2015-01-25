@@ -2,11 +2,14 @@
 import React from 'react';
 import {classSet} from 'react-addons';
 import Track from '../models/track';
+import keymaster from 'keymaster';
 
 export default React.createClass({
   componentWillMount: function () {
     this.props.queso.on('TRACK_SELECTED', this._onChange);
     this.props.queso.on('TRACK_ADDED', this._onChange);
+
+    keymaster('shift+t', this.addTrack);
   },
 
   getTracks: function () {
