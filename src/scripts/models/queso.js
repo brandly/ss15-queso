@@ -11,6 +11,7 @@ export default class Queso extends EventEmitter {
     this.isRecording = false;
     this.bpm = opts.bpm || 120;
     this.currentTime = 0;
+    window.queso = this; // for debugging
   }
 
   addTrack(track) {
@@ -46,7 +47,7 @@ export default class Queso extends EventEmitter {
   setRecording(recording) {
     if (recording) {
       // start recording, start playing too
-      this.isPlaying = true;
+      this.setPlaying(true);
     }
     this.isRecording = recording;
     this.emit('STATE_CHANGED');
