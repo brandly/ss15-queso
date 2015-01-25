@@ -19,9 +19,10 @@ export default React.createClass({
       height: 150,
       octaves: Math.round(window.innerWidth / 400),
       startNote: 'C3',
-      whiteNotesColour: 'white',
-      blackNotesColour: 'black',
-      hoverColour: '#f3e939'
+      whiteKeyColour: 'white',
+      blackKeyColour: '#423A4B',
+      borderColour: '#423A4B',
+      activeColour: '#655A71',
     });
 
     let currentlyPlaying = {};
