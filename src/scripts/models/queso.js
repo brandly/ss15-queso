@@ -1,7 +1,7 @@
 import EventEmitter from 'events';
 const time = require('../lib/timeconvert');
 
-const PLAY_INTERVAL = 100; // TODO shorten
+const PLAY_INTERVAL = 10;
 
 export default class Queso extends EventEmitter {
   constructor(opts = {}) {
