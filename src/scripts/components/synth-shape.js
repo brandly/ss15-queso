@@ -16,6 +16,7 @@ export default React.createClass({
 
   setShape: function (shape) {
     this.props.track.instrument.setShape(shape);
+    this.props.queso.emit('TRACK_CHANGED');
     this._onChange();
   },
 

@@ -15,7 +15,7 @@ export default React.createClass({
       <div className="control-panel">
         <p>{trackTitle}</p>
         <PianoKeyboard track={this.props.track} queso={this.props.queso} />
-        <SynthShape track={this.props.track} />
+        <SynthShape track={this.props.track} queso={this.props.queso} />
       </div>
     );
 

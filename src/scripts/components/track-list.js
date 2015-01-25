@@ -9,6 +9,7 @@ export default React.createClass({
   componentWillMount: function () {
     this.props.queso.on('TRACK_SELECTED', this._onChange);
     this.props.queso.on('TRACK_ADDED', this._onChange);
+    this.props.queso.on('TRACK_CHANGED', this._onChange);
 
     keymaster('shift+t', this.addTrack);
   },
@@ -23,10 +24,7 @@ export default React.createClass({
   },
 
   addTrack: function () {
-    const track = new Track({
-      title: 'Track ' + (this.props.queso.tracks.length + 1),
-      queso: this.props.queso
-    });
+    const track = new Track({ queso: this.props.queso });
     this.props.queso.addTrack(track);
   },
 
@@ -50,7 +48,7 @@ export default React.createClass({
         <div className={classes} key={i} onClick={this.selectTrack.bind(this, t)}>
           <div className="track-sounds"></div>
           <div className="track-info">
-            <div className="track-info-title">{t.title}</div>
+            <div className="track-info-title">{t.instrument.shape}</div>
           </div>
         </div>
       );
