@@ -46,6 +46,20 @@ export default class Queso extends EventEmitter {
   setCurrentTime(time) {
     this.currentTime = time % 1;
     this.emit('CURRENT_TIME_CHANGED');
+    if (this.isPlaying) {
+      this.tracks.forEach(track => {
+        track.recordings.forEach(note => {
+          const inInterval = (this.currentTime > note.startTime) &&
+                             (this.currentTime < note.endTime);
+          if (!inInterval && note.playing) {
+            note.playing.stop();
+            delete note.playing;
+          } else if (inInterval && !note.playing) {
+            note.playing = track.play(note.frequency);
+          }
+        });
+      });
+    }
   }
 
   setRecording(recording) {
