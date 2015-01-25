@@ -1,7 +1,3 @@
-
-// TODO: should we have like an instrument abstract base class or something?
-// i'm just exploring at this point
-
 const validShapes = ['sine', 'square', 'triangle', 'sawtooth'];
 
 export default class Synth {
