@@ -12,7 +12,7 @@ export default React.createClass({
     return (
       <div className="control-panel">
         <p>{trackTitle}</p>
-        {showKeyboard ? <PianoKeyboard /> : ''}
+        {showKeyboard ? <PianoKeyboard track={this.props.track} /> : ''}
       </div>
     );
 

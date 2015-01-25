@@ -19,7 +19,6 @@ export default class Track extends EventEmitter {
     var node = this.instrument.getNode(frequency);
     tsw.connect(node, this.panner, this.gain, tsw.speakers);
     node.start();
-
     return {
       stop: function () {
         node.stop();

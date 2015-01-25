@@ -3,7 +3,15 @@ import React from 'react';
 import cuid from 'cuid';
 
 export default React.createClass({
+
+  render: function () {
+    return (
+      <div ref="keyboard" className="piano-keyboard"></div>
+    );
+  },
+
   componentDidMount: function() {
+
     let keyboardEl = this.refs.keyboard.getDOMNode();
     keyboardEl.id = cuid();
     this.hancock = new QwertyHancock({
@@ -16,10 +24,16 @@ export default React.createClass({
       blackNotesColour: 'black',
       hoverColour: '#f3e939'
     });
+
+    let currentlyPlaying = {};
+    this.hancock.keyDown = (note, frequency) => {
+      currentlyPlaying[note] = this.props.track.play(frequency);
+    };
+    this.hancock.keyUp = function(note) {
+      currentlyPlaying[note].stop();
+      delete currentlyPlaying[note];
+    };
+
   },
-  render: function () {
-    return (
-      <div ref="keyboard" className="piano-keyboard"></div>
-    );
-  }
+
 });
