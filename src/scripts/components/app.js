@@ -34,7 +34,7 @@ export default React.createClass({
   render: function () {
     return (
       <div className="queso">
-        <Header />
+        <Header queso={this.state.queso} />
         <TrackList queso={this.state.queso} />
         <ControlPanel track={this.state.queso.selectedTrack} />
       </div>

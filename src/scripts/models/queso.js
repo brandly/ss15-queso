@@ -4,6 +4,8 @@ export default class Queso extends EventEmitter {
   constructor(opts) {
     this.tracks = [];
     this.selectedTrack = null;
+    this.isPlaying = false;
+    this.isRecording = false;
   }
 
   addTrack(track) {
@@ -15,5 +17,23 @@ export default class Queso extends EventEmitter {
   selectTrack(track) {
     this.selectedTrack = track;
     this.emit('TRACK_SELECTED', this.selectedTrack);
+  }
+
+  setPlaying(playing) {
+    if (!playing) {
+      // stop playing, stop recording too
+      this.isRecording = false;
+    }
+    this.isPlaying = playing;
+    this.emit('STATE_CHANGED');
+  }
+
+  setRecording(recording) {
+    if (recording) {
+      // start recording, start playing too
+      this.isPlaying = true;
+    }
+    this.isRecording = recording;
+    this.emit('STATE_CHANGED');
   }
 }
