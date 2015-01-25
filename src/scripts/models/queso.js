@@ -1,4 +1,7 @@
 import EventEmitter from 'events';
+const time = require('../lib/timeconvert');
+
+const PLAY_INTERVAL = 100; // TODO shorten
 
 export default class Queso extends EventEmitter {
   constructor(opts = {}) {
@@ -22,9 +25,19 @@ export default class Queso extends EventEmitter {
   }
 
   setPlaying(playing) {
-    if (!playing) {
+    if (playing) {
+      this.playingInterval = setInterval(() => {
+        const step = time.convert({
+          bpm: this.bpm,
+          ms: PLAY_INTERVAL
+        });
+        this.currentTime = (this.currentTime + step) % 1;
+        this.emit('CURRENT_TIME_CHANGED');
+      }, PLAY_INTERVAL);
+    } else {
       // stop playing, stop recording too
       this.isRecording = false;
+      clearInterval(this.playingInterval);
     }
     this.isPlaying = playing;
     this.emit('STATE_CHANGED');
