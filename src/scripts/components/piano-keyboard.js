@@ -23,7 +23,7 @@ export default React.createClass({
   },
   render: function () {
     return (
-      <div ref="keyboard" className="piano-keyboard">TODO keyboard goes here</div>
+      <div ref="keyboard" className="piano-keyboard"></div>
     );
   }
 });
