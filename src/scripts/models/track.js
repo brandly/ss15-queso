@@ -7,7 +7,6 @@ export default class Track extends EventEmitter {
     this.title = opts.title || '';
     this.type = opts.type || 'MIDI';
 
-    this.isRecording = opts.isRecording || false;
     this.recordings = opts.recordings || [];
     this.instrument = opts.instrument || new Synth();
     // pass in a gain value on creation, or not
@@ -15,19 +14,12 @@ export default class Track extends EventEmitter {
     this.panner = tsw.panner(opts.panner || 0);
   }
 
-  toggleRecording() {
-    this.isRecording = !this.isRecording;
-  }
 
   play(args) {
     var {frequency} = args;
     var node = this.instrument.getNode(frequency);
     tsw.connect(node, this.panner, this.gain, tsw.speakers);
     node.start();
-
-    if (this.isRecording) {
-      this.record(args);
-    }
 
     return {
       stop: function () {

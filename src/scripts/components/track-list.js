@@ -36,21 +36,6 @@ export default React.createClass({
     this.props.queso.selectTrack(track);
   },
 
-  toggleRecording: function () {
-    // call this on next tick because the event that calls
-    // selectTrack fires AFTER this one does
-    process.nextTick(() => {
-      this.props.queso.tracks.forEach(track => {
-        if (track === this.props.queso.selectedTrack) {
-          track.toggleRecording();
-        } else {
-          track.isRecording = false;
-        }
-      });
-      this._onChange();
-    });
-  },
-
   render: function () {
     var trackElements = this.state.tracks.map((t, i) => {
       var classes = classSet({
@@ -64,7 +49,6 @@ export default React.createClass({
           <div className="track-sounds"></div>
           <div className="track-info">
             <div className="track-info-title">{t.title}</div>
-            <a href="javascript:void 0" onClick={this.toggleRecording}>record</a>
           </div>
         </div>
       );
