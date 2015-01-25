@@ -22,7 +22,10 @@ export default React.createClass({
   },
 
   addTrack: function () {
-    this.props.queso.addTrack(new Track({title: 'wahhh'}));
+    const track = new Track({
+      title: 'Track ' + (this.props.queso.tracks.length + 1)
+    });
+    this.props.queso.addTrack(track);
   },
 
   _onChange: function () {
@@ -58,7 +61,7 @@ export default React.createClass({
 
       return (
         <div className={classes} key={i} onClick={this.selectTrack.bind(this, t)}>
-          <div className="track-sounds">bllksjdlkfjs</div>
+          <div className="track-sounds"></div>
           <div className="track-info">
             <div className="track-info-title">{t.title}</div>
             <a href="javascript:void 0" onClick={this.toggleRecording}>record</a>
