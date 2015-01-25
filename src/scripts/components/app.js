@@ -1,6 +1,5 @@
 /** @jsx REACT.DOM */
 import React from 'react';
-import Header from './header';
 import TrackList from './track-list';
 import ControlPanel from './control-panel';
 import Queso from '../models/queso';
@@ -39,7 +38,6 @@ export default React.createClass({
   render: function () {
     return (
       <div className="queso">
-        <Header queso={this.state.queso} />
         <TrackList queso={this.state.queso} />
         <ControlPanel track={this.state.queso.selectedTrack} />
       </div>
