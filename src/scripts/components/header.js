@@ -68,8 +68,8 @@ export default React.createClass({
         <button className={recordingClasses} onClick={this.record}>Record</button>
 
         <div className="header-right">
-          <p className="bpm">{this.state.queso.bpm}</p>
-          <p className="bpm tap-bpm" onClick={this.tapBpm}>TAP</p>
+          <p className="bpm">{this.state.queso.bpm} BPM</p>
+          <p className="bpm tap-bpm button" onClick={this.tapBpm}>TAP</p>
         </div>
       </header>
     );
