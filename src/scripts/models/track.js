@@ -15,6 +15,10 @@ export default class Track extends EventEmitter {
     this.panner = tsw.panner(opts.panner || 0);
   }
 
+  toggleRecording() {
+    this.isRecording = !this.isRecording;
+  }
+
   play(args) {
     var {frequency} = args;
     var node = this.instrument.getNode(frequency);
