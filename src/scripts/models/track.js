@@ -40,8 +40,9 @@ export default class Track extends EventEmitter {
   record(args) {
     this.recordings.push({
       frequest: args.frequency,
-      time: args.time // this should come from some playback head
+      time: args.time
     });
+    return this.play(args);
     // emit something?
   }
 }

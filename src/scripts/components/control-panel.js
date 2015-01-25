@@ -14,7 +14,7 @@ export default React.createClass({
       <div className="control-panel">
         <p>{trackTitle}</p>
         {isMIDI ?
-          <PianoKeyboard track={this.props.track} /> :
+          <PianoKeyboard track={this.props.track} queso={this.props.queso} /> :
           <MicRecorder track={this.props.track} />}
       </div>
     );

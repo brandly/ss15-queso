@@ -11,7 +11,6 @@ export default React.createClass({
   },
 
   componentDidMount: function() {
-
     let keyboardEl = this.refs.keyboard.getDOMNode();
     keyboardEl.id = cuid();
     this.hancock = new QwertyHancock({
@@ -27,7 +26,7 @@ export default React.createClass({
 
     let currentlyPlaying = {};
     this.hancock.keyDown = (note, frequency) => {
-      currentlyPlaying[note] = this.props.track.play({ frequency });
+      currentlyPlaying[note] = this.props.queso.play(frequency);
     };
     this.hancock.keyUp = function(note) {
       currentlyPlaying[note].stop();

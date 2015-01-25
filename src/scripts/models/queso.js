@@ -7,6 +7,7 @@ export default class Queso extends EventEmitter {
     this.isPlaying = false;
     this.isRecording = false;
     this.bpm = opts.bpm || 120;
+    this.currentTime = 0;
   }
 
   addTrack(track) {
@@ -16,9 +17,6 @@ export default class Queso extends EventEmitter {
   }
 
   selectTrack(track) {
-    if (this.selectedTrack) {
-      this.selectedTrack.isRecording = false;
-    }
     this.selectedTrack = track;
     this.emit('TRACK_SELECTED', this.selectedTrack);
   }
@@ -38,14 +36,21 @@ export default class Queso extends EventEmitter {
       this.isPlaying = true;
     }
     this.isRecording = recording;
-    if (this.selectedTrack) {
-      this.selectedTrack.isRecording = this.isRecording;
-    }
     this.emit('STATE_CHANGED');
   }
 
   setBpm(bpm) {
     this.bpm = bpm;
     this.emit('STATE_CHANGED');
+  }
+
+  play(args) {
+    if (this.selectedTrack) {
+      const method = this.isRecording ? 'record' : 'play';
+      return this.selectedTrack[method]({
+        frequency: args.frequency,
+        time: this.currentTime
+      });
+    }
   }
 }
