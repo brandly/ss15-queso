@@ -1,11 +1,12 @@
 import EventEmitter from 'events';
 
 export default class Queso extends EventEmitter {
-  constructor(opts) {
+  constructor(opts = {}) {
     this.tracks = [];
     this.selectedTrack = null;
     this.isPlaying = false;
     this.isRecording = false;
+    this.bpm = opts.bpm || 120;
   }
 
   addTrack(track) {
@@ -34,6 +35,11 @@ export default class Queso extends EventEmitter {
       this.isPlaying = true;
     }
     this.isRecording = recording;
+    this.emit('STATE_CHANGED');
+  }
+
+  setBpm(bpm) {
+    this.bpm = bpm;
     this.emit('STATE_CHANGED');
   }
 }
