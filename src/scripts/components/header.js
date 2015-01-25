@@ -69,7 +69,7 @@ export default React.createClass({
 
         <div className="header-right">
           <p className="bpm">{this.state.queso.bpm} BPM</p>
-          <p className="bpm tap-bpm button" onClick={this.tapBpm}>TAP</p>
+          <p className="bpm tap-bpm button" onClick={this.tapBpm}>Tap</p>
         </div>
       </header>
     );
