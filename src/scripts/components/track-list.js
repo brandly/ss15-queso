@@ -24,7 +24,8 @@ export default React.createClass({
 
   addTrack: function () {
     const track = new Track({
-      title: 'Track ' + (this.props.queso.tracks.length + 1)
+      title: 'Track ' + (this.props.queso.tracks.length + 1),
+      queso: this.props.queso
     });
     this.props.queso.addTrack(track);
   },

@@ -3,6 +3,8 @@ import Synth from './synth';
 
 export default class Track extends EventEmitter {
   constructor(opts) {
+    this.queso = opts.queso;
+    console.assert(this.queso);
     this.id = opts.id || Date.now();
     this.title = opts.title || '';
     this.type = opts.type || 'MIDI';
@@ -16,23 +18,24 @@ export default class Track extends EventEmitter {
 
   play(args) {
     var {frequency} = args;
+    const startTime = args.time;
     var node = this.instrument.getNode(frequency);
     tsw.connect(node, this.panner, this.gain, tsw.speakers);
     node.start();
 
     return {
-      stop: function () {
+      stop: () => {
+        const endTime = this.queso.currentTime;
         node.stop();
-        // clean up recording and stuff
+        this.recordings.push({
+          frequency: frequency,
+          startTime, endTime
+        });
       }
     };
   }
 
   record(args) {
-    this.recordings.push({
-      frequest: args.frequency,
-      time: args.time
-    });
     return this.play(args);
     // emit something?
   }
