@@ -14,7 +14,7 @@ var paths = {
 };
 
 function handleError (err) {
-  console.error(err)
+  gutil.log(gutil.colors.red(err.message));
   gutil.beep();
   this.emit('end');
 }
