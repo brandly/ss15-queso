@@ -29,7 +29,13 @@ export default React.createClass({
     // call this on next tick because the event that calls
     // selectTrack fires AFTER this one does
     process.nextTick(() => {
-      this.props.queso.selectedTrack.toggleRecording();
+      this.props.queso.tracks.forEach(track => {
+        if (track === this.props.queso.selectedTrack) {
+          track.toggleRecording();
+        } else {
+          track.isRecording = false;
+        }
+      });
       this._onChange();
     });
   },
