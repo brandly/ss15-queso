@@ -41,6 +41,10 @@ export default React.createClass({
     this.lastTap = tsw.context().currentTime;
   },
 
+  toBeginning: function () {
+    this.state.queso.setCurrentTime(0);
+  },
+
   render: function () {
     const {queso} = this.state;
 
@@ -60,7 +64,7 @@ export default React.createClass({
           // TODO: probably use some icons
         }
         <button className={playingClasses} onClick={this.play}>Play</button>
-        <button className="button" onClick={this.stop}>Stop</button>
+        <button className="button" onClick={this.stop} onDoubleClick={this.toBeginning}>Stop</button>
         <button className={recordingClasses} onClick={this.record}>Record</button>
 
         <div className="header-right">
