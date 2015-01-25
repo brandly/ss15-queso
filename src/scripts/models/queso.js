@@ -38,6 +38,15 @@ export default class Queso extends EventEmitter {
       // stop playing, stop recording too
       this.setRecording(false);
       clearInterval(this.playingInterval);
+      // stop all notes from playing
+      this.tracks.forEach(track => {
+        track.recordings.forEach(note => {
+          if (note.playing) {
+            note.playing.stop();
+            delete note.playing;
+          }
+        });
+      });
     }
     this.isPlaying = playing;
     this.emit('STATE_CHANGED');
