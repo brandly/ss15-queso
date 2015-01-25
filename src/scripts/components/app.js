@@ -13,7 +13,8 @@ export default React.createClass({
     this.queso.addTrack(new Track({
       id: 0,
       title: 'fire',
-      type: 'MIDI'
+      type: 'MIDI',
+      queso: this.queso
     }));
 
     this.queso.on('TRACK_SELECTED', this._onChange);

@@ -2,6 +2,7 @@
 import React from 'react';
 import PianoKeyboard from './piano-keyboard';
 import MicRecorder from './mic-recorder';
+import SynthShape from './synth-shape';
 
 export default React.createClass({
   render: function () {
@@ -14,6 +15,7 @@ export default React.createClass({
       <div className="control-panel">
         <p>{trackTitle}</p>
         <PianoKeyboard track={this.props.track} queso={this.props.queso} />
+        <SynthShape track={this.props.track} />
       </div>
     );
 
