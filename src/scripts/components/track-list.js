@@ -29,6 +29,7 @@ export default React.createClass({
     var trackElements = this.state.tracks.map((t, i) => {
       var classes = classSet({
         'track': true,
+        'is-recording': t.isRecording,
         'track-selected': this.state.selectedTrack && (t.id === this.state.selectedTrack.id)
       });
 

@@ -7,6 +7,7 @@ export default class Track extends EventEmitter {
     this.title = opts.title || '';
     this.type = opts.type || 'MIDI';
 
+    this.isRecording = opts.isRecording || false;
     this.recordings = opts.recordings || [];
     this.instrument = opts.instrument || new Synth();
     // pass in a gain value on creation, or not
