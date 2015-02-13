@@ -12,7 +12,6 @@ export default React.createClass({
   componentWillMount: function () {
     this.queso.addTrack(new Track({
       id: 0,
-      title: 'fire',
       type: 'MIDI',
       queso: this.queso
     }));

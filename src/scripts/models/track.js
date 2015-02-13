@@ -6,7 +6,6 @@ export default class Track extends EventEmitter {
     this.queso = opts.queso;
     console.assert(this.queso);
     this.id = opts.id || Date.now();
-    this.title = opts.title || '';
     this.type = opts.type || 'MIDI';
 
     this.recordings = opts.recordings || [];
