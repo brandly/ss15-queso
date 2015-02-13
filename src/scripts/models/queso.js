@@ -27,6 +27,7 @@ export default class Queso extends EventEmitter {
 
   setPlaying(playing) {
     if (playing) {
+      if (this.isPlaying) return;
       this.playingInterval = setInterval(() => {
         const step = time.convert({
           bpm: this.bpm,
