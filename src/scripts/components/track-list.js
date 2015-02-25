@@ -67,6 +67,10 @@ export default React.createClass({
         <div className={classes} key={i} onClick={this.selectTrack.bind(this, t)}>
           <div className="track-sounds">
             {sounds}
+
+            <div className="bar first-bar"></div>
+            <div className="bar second-bar"></div>
+            <div className="bar third-bar"></div>
           </div>
           <div className="track-info">
             <div className="track-info-title">{t.instrument.shape}</div>
@@ -84,6 +88,7 @@ export default React.createClass({
         <a href="#" className="add-track" onClick={this.addTrack}>
           <div className="add-track-inner">New Track</div>
         </a>
+
       </div>
     );
   }
