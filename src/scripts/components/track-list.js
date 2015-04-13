@@ -4,6 +4,7 @@ import {classSet} from 'react-addons';
 import Track from '../models/track';
 import CurrentTimeBar from './current-time-bar';
 import keymaster from 'keymaster';
+import {frequencyToNoteNumber} from 'midiutils';
 
 export default React.createClass({
   componentWillMount: function () {
@@ -41,6 +42,9 @@ export default React.createClass({
   },
 
   render: function () {
+    const trackHeight = 80
+    const maxNoteHeight = 10
+
     const trackElements = this.state.tracks.map((t, i) => {
       const classes = classSet({
         'track': true,
@@ -48,13 +52,19 @@ export default React.createClass({
         'track-selected': this.state.selectedTrack && (t.id === this.state.selectedTrack.id)
       });
 
+      const midiNotes = t.recordings.map(r => frequencyToNoteNumber(r.frequency))
+      const highestNote = Math.max.apply(Math, midiNotes)
+      const lowestNote = Math.min.apply(Math, midiNotes)
+      const noteHeight = Math.min(maxNoteHeight, trackHeight / (highestNote - lowestNote + 1))
+
       const sounds = t.recordings.map((r, i) => {
+        const distanceFromHighest = highestNote - midiNotes[i]
         const style = {
           position: 'absolute',
-          top: 0,
+          top: (distanceFromHighest * noteHeight) + 'px',
           left: r.startTime * 100 + '%',
           right: 100 - r.endTime * 100 + '%',
-          height: '10px',
+          height: noteHeight + 'px',
           backgroundColor: '#5B5268'
         };
 

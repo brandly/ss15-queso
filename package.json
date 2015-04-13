@@ -34,6 +34,7 @@
     "cuid": "^1.2.4",
     "getusermedia": "^1.2.0",
     "keymaster": "^1.6.2",
+    "midiutils": "0.0.4",
     "react": "^0.12.2"
   }
 }
