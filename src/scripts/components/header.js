@@ -1,10 +1,12 @@
 /** @jsx REACT.DOM */
 import React from 'react';
 import {classSet} from 'react-addons';
+import keymaster from 'keymaster';
 
 export default React.createClass({
   componentWillMount: function () {
     this.state.queso.on('STATE_CHANGED', this._onChange);
+    keymaster('space', this.onSpace);
   },
 
   getInitialState: function () {
@@ -15,12 +17,22 @@ export default React.createClass({
     this.setState({queso: this.props.queso});
   },
 
+  onSpace: function (event) {
+    event.preventDefault();
+    this.togglePlayback();
+  },
+
   play: function () {
     this.state.queso.setPlaying(true);
   },
 
   stop: function () {
     this.state.queso.setPlaying(false);
+  },
+
+  togglePlayback: function () {
+    const {queso} = this.state;
+    queso.setPlaying(!queso.isPlaying);
   },
 
   record: function () {
