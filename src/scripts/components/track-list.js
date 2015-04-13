@@ -42,8 +42,8 @@ export default React.createClass({
   },
 
   render: function () {
-    const trackHeight = 80
-    const maxNoteHeight = 10
+    const trackHeight = 80;
+    const maxNoteHeight = 10;
 
     const trackElements = this.state.tracks.map((t, i) => {
       const classes = classSet({
@@ -52,13 +52,13 @@ export default React.createClass({
         'track-selected': this.state.selectedTrack && (t.id === this.state.selectedTrack.id)
       });
 
-      const midiNotes = t.recordings.map(r => frequencyToNoteNumber(r.frequency))
-      const highestNote = Math.max.apply(Math, midiNotes)
-      const lowestNote = Math.min.apply(Math, midiNotes)
-      const noteHeight = Math.min(maxNoteHeight, trackHeight / (highestNote - lowestNote + 1))
+      const midiNotes = t.recordings.map(r => frequencyToNoteNumber(r.frequency));
+      const highestNote = Math.max.apply(Math, midiNotes);
+      const lowestNote = Math.min.apply(Math, midiNotes);
+      const noteHeight = Math.min(maxNoteHeight, trackHeight / (highestNote - lowestNote + 1));
 
       const sounds = t.recordings.map((r, i) => {
-        const distanceFromHighest = highestNote - midiNotes[i]
+        const distanceFromHighest = highestNote - midiNotes[i];
         const style = {
           position: 'absolute',
           top: (distanceFromHighest * noteHeight) + 'px',
